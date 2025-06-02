@@ -265,6 +265,53 @@ function displayContent(title, markdownText, titleElement, bodyElement, fullPath
             }
         });
     }
+
+    // Add click listeners to subheadings for selection
+    const subheadings = bodyElement.querySelectorAll('h2, h3, h4, h5, h6');
+    subheadings.forEach(heading => {
+        heading.addEventListener('click', () => {
+            try {
+                const selection = window.getSelection();
+                if (!selection) return;
+                selection.removeAllRanges();
+
+                const range = document.createRange();
+                range.setStartBefore(heading); // Start the selection just before the clicked heading
+
+                let nextElement = heading.nextElementSibling;
+                let endNodeForRange = heading; // Initialize endNode with the heading itself
+
+                // Function to get heading level (2 for H2, 3 for H3, etc.)
+                const getHeadingLevel = (el) => {
+                    if (!el || !el.tagName) return Infinity; // Not a heading or invalid element
+                    const tagName = el.tagName.toUpperCase();
+                    if (tagName.startsWith('H') && tagName.length === 2) {
+                        return parseInt(tagName.charAt(1), 10);
+                    }
+                    return Infinity; // Not a H1-H6 heading
+                };
+
+                const clickedHeadingLevel = getHeadingLevel(heading);
+
+                while (nextElement) {
+                    const nextElementLevel = getHeadingLevel(nextElement);
+                    // If the next element is a heading of the same or higher level, stop.
+                    if (nextElementLevel <= clickedHeadingLevel) {
+                        break;
+                    }
+                    // Otherwise, extend the selection to include this element
+                    endNodeForRange = nextElement; 
+                    nextElement = nextElement.nextElementSibling;
+                }
+                
+                range.setEndAfter(endNodeForRange); // Set the end of the range after the last element to be included
+                selection.addRange(range);
+
+            } catch (err) {
+                console.error("Error selecting heading content block:", err);
+            }
+        });
+    });
 }
 
 function escapeHtml(unsafe) {
