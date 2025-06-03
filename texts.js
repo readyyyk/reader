@@ -895,6 +895,6 @@ const texts = {
 ## \`NOP\` (No Operation)
 *   **Тезисно:** Ничего не делает. Занимает 1 байт и некоторое время на выполнение. Используется для выравнивания кода или создания коротких задержек. \`XCHG AX,AX\` часто используется как NOP для процессоров 8086.
 `,
-  }
+  },
   "Welcome": "### Welcome to the Markdown Viewer!\n\nThis is a simple application to display your markdown texts. Please select an item from the navigation panel on the left to get started.\n\n- You can organize texts into groups and subgroups.\n- Clicking on a text title will display its content here."
 }; 
