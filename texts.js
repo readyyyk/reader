@@ -1,3 +1,4 @@
+// This file is appended to by to_texts.cjs
 const texts = {
   "Асик": `
 ## 1. Инструкции и операнды. Способ записи инструкций, виды операндов, ограничения на использование операндов.
@@ -671,5 +672,6 @@ const texts = {
     *   Чтобы не было "мигания", рисуют на "запасной доске", а потом быстро меняют ее местами с той, что видна в "окне".
 
 `,
-  "Welcome": "### Welcome to the Markdown Viewer!\n\nThis is a simple application to display your markdown texts. Please select an item from the navigation panel on the left to get started.\n\n- You can organize texts into groups and subgroups.\n- Clicking on a text title will display its content here."
+  "Welcome": "### Welcome to the Markdown Viewer!\n\nThis is a simple application to display your markdown texts. Please select an item from the navigation panel on the left to get started.\n\n- You can organize texts into groups and subgroups.\n- Clicking on a text title will display its content here.",
+  "Матем 2024-2025-лето экз": ``,
 }; 
